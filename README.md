@@ -24,6 +24,18 @@
         <th align="left">Arch install script with minimal configuration
     </tr>
     <tr>
+        <th>ArchDots
+        <th>---
+        <th><a target="_blank" href="https://github.com/Nionim/ArchDots">URL</a>
+        <th align="left">My arch dots
+    </tr>
+    <tr>
+        <th>WinDots
+        <th>---
+        <th><a target="_blank" href="https://github.com/Nionim/WinDots">URL</a>
+        <th align="left">My windows dots
+    </tr>
+    <tr>
         <th>discord-FIX.css
         <th><a target="_blank" href="https://github.com/Nionim/Citory_Utils/raw/refs/heads/master/utils/discord/themes/discord.fix.css">RAW</a>
         <th><a target="_blank" href="./utils/discord/themes/discord.fix.css">URL</a>
