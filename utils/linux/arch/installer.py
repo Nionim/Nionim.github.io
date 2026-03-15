@@ -7,6 +7,14 @@
 # Возможно я и его потом перепишу, если он не будет меня устраивать, но пока всё нормально
 #
 
+# Разметка диска
+# N - All space on the disk
+# 500MiB - BOOT
+# 4GiB - SWAP (Maybe i can set more but not needed)
+# Main space: N - BOOT - SWAP
+
+# I cant write it normally on Windows. But it work
+# ignore type only for develop
 from archinstall.lib.networking import ping # type: ignore
 import getpass, os, datetime, subprocess, sys
 
@@ -37,6 +45,7 @@ NEEDED_LOCALES = [
 
 ETHERNET_CHECKS = 0
 
+# Only main names/passwords
 def set_variables():
     global HOSTNAME, USERNAME
     global ROOT_PASSWORD, USER_PASSWORD
@@ -46,18 +55,24 @@ def set_variables():
     ROOT_PASSWORD = getpass.getpass("Set Root-password: ")
     USER_PASSWORD = getpass.getpass("Set User-password: ")
 
+# Final erorrs list
 def print_errors():
     if os.path.exists(ERRORS) and os.path.getsize(ERRORS) > 0:
         with open(ERRORS, 'r', encoding='utf-8') as f:
             print(f"[ Total Errors:{len(f.readlines())} ]")
             print(f.read())
         
+# For ^ that (^^^ check previus lines!!!) step
 def log_error(e: str):
     os.makedirs(os.path.dirname(ERRORS), exist_ok=True)
     with open(ERRORS, "a", encoding="utf-8") as f:
         current_time = datetime.now().strftime("%H:%M:%S")
         f.write(f"[{current_time}] {e}\n")
+        print(f"[{current_time}] {e}")
 
+# Чек айпишников.
+# Почему несколько айпишников? 
+#   - Потому что роскомпозор постоянно банит новые адреса.
 def check_online(ip: str = "1.1.1.1"):
     global ETHERNET_CHECKS
     ETHERNET_CHECKS+=1
@@ -74,6 +89,8 @@ def check_online(ip: str = "1.1.1.1"):
     return True
 
 
+# Dont touch it
+# Only for add more steps
 def main() -> None:
     if not check_online("1.1.1.1"): 
         print("Cannot install! Connect to ethernet before run it!")
