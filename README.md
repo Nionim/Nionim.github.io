@@ -10,6 +10,24 @@
 	</b>
 </p>
 
+<h3 align="center">-== [ Main arch skript ] ==-</h3>
+
+```bash
+curl -L -O https://arch.citory.net/arch.html
+chmod +x installer.sh
+./installer.sh
+```
+<br>
+
+<h3 align="center">-== [ New arch skript ] ==-</h3>
+
+```bash
+curl -L -O https://arch.citory.net/arch.py.html
+chmod +x installer.py
+./installer.py
+```
+<br>
+
 <table align="center">
     <tr>
         <th>Name
@@ -21,7 +39,13 @@
         <th>ArchInstaller.sh
         <th><a target="_blank" href="https://raw.githubusercontent.com/Nionim/Citory_Utils/refs/heads/master/utils/linux/arch/installer.sh">RAW</a>
         <th><a target="_blank" href="./utils/linux/arch/installer.sh">URL</a>
-        <th align="left">Arch install script with minimal configuration
+        <th align="left">Arch install script with minimal configuration <br> Old version
+    </tr>
+    <tr>
+        <th>ArchInstaller.py
+        <th><a target="_blank" href="https://raw.githubusercontent.com/Nionim/Citory_Utils/refs/heads/master/utils/linux/arch/installer.py">RAW</a>
+        <th><a target="_blank" href="./utils/linux/arch/installer.py">URL</a>
+        <th align="left">Arch install script with minimal configuration <br> New version
     </tr>
     <tr>
         <th>ArchDots
