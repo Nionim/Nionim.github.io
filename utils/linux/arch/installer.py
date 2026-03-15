@@ -17,6 +17,7 @@
 # ignore type only for develop
 from archinstall.lib.networking import ping # type: ignore
 import getpass, os, datetime, subprocess, sys
+from pathlib import Path
 
 # Logs file
 ERRORS = "/tmp/arch_installer/errors.log"
@@ -33,7 +34,7 @@ NEEDED_PACKAGES = [
 
 # DeltaCion's setup
 CITORY_PACKAGES = NEEDED_PACKAGES + [
-    "firefox", "stow"
+    "firefox", "stow", "fastfetch", "7zip"
 ]
 
 # Needed locales
@@ -54,6 +55,29 @@ def set_variables():
     USERNAME = input("Set Username: ")
     ROOT_PASSWORD = getpass.getpass("Set Root-password: ")
     USER_PASSWORD = getpass.getpass("Set User-password: ")
+
+# Just set a disk name
+def set_disk_name():
+    global DISK_NAME
+    subprocess.run(["lsblk", "-d", "-o", "NAME,SIZE,TYPE"])
+    DISK_NAME = "/dev/"+input("\nEnter the disk name (ex: sda): ")
+
+# Set a partions size
+def set_partions_space():
+    print("U cant replace/remove partions. " \
+    "\nUf u need it - Open script and rewrite it.")
+    global BOOT_SPACE
+    global SWAP_SPACE
+    BOOT_SPACE = input("Print boot space (ex: +500M): ")
+    SWAP_SPACE = input("Print swap space (ex: +4G): ")
+
+# Partioning disk (Les go install the fvking system!)
+def disk_partioning(diskName: str):
+    print("Just do it!")
+    print(f"Selectet disk: {diskName}")
+    fdisk_cmd = ["g", "n", "n", "1", BOOT_SPACE, "t", "1", "n", "2", SWAP_SPACE, "t", "2", "19", "n", "3", "w"]
+    try: subprocess.run(["fdisk", diskName], input=fdisk_cmd, text=True, check=True, capture_output=True)
+    except Exception as e: log_error(f"Disk partitioning failed: {e}")
 
 # Final erorrs list
 def print_errors():
