@@ -28,6 +28,8 @@ chmod +x installer.py
 ```
 <br>
 
+---
+
 <table align="center">
     <tr>
         <th>Name
@@ -126,6 +128,8 @@ chmod +x installer.py
         <th align="left">WTL</i>
     </tr>
 </table>
+
+---
 
 <p align="center">
 	<a target="_blank" href="https://t.me/LOWcitory" target="_blank">
