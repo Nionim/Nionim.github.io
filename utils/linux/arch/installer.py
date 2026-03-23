@@ -71,7 +71,7 @@ INSTALL_AUR = False
 INSTALL_AUR_PACKAGES = False
 AUR_SCRIPT = ""
 AUR_PACKAGES = [
-    "desktopify-lite", "visual-studio-code-bin"
+    "desktopify-lite"
 ]
 
 def build_aur_script(install_aur, install_aur_packages):
@@ -189,7 +189,7 @@ def finnally_down():
 
     dude_chroot()
     Path("/mnt/tmp").mkdir(parents=True, exist_ok=True)
-    Path("/mnt/tmp/config.sh").write_text(CHROOT_SCRIPT)
+    Path("/mnt/tmp/config.sh").write_text(CHROOT_SCRIPT.replace("\r", ""))
     Path("/mnt/tmp/config.sh").chmod(0o755)
     run(["arch-chroot", "/mnt", "/tmp/config.sh"])
 
