@@ -71,7 +71,7 @@ INSTALL_AUR = False
 INSTALL_AUR_PACKAGES = False
 AUR_SCRIPT = ""
 AUR_PACKAGES = [
-    "desktopify-lite"
+    "desktopify-lite", "visual-studio-code-bin"
 ]
 
 def build_aur_script(install_aur, install_aur_packages):
