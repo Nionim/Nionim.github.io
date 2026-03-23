@@ -13,9 +13,6 @@
 # 4GiB - SWAP (Maybe i can set more but not needed)
 # Main space: N - BOOT - SWAP
 
-# I cant write it normally on Windows. But it work
-# ignore type only for develop
-from archinstall.lib.networking import ping # type: ignore
 import getpass, os, subprocess
 from datetime import datetime
 from pathlib import Path
@@ -225,32 +222,9 @@ def log_error(msg: str):
         f.write(f"[{current_time}] {msg}\n")
         print(f"[{current_time}] {msg}")
 
-# Чек айпишников.
-# Почему несколько айпишников? 
-#   - Потому что роскомпозор постоянно банит новые адреса.
-def check_online():
-    global ETHERNET_CHECKS
-    ETHERNET_CHECKS+=1
-    if ETHERNET_CHECKS >= 3: return False
-    ips = ["1.1.1.1", "8.8.8.8", "google.com"]
-    for ip in ips:
-        try:
-            ping(ip)
-            return True
-        except Exception as e:
-            print(f"HA! I cant check this ip {ip}!")
-            print(e)
-            log_error(str(e))
-    return True
-
-
 # Dont touch it
 # Only for add more steps
 def main() -> None:
-    if not check_online(): 
-        print("Cannot install! Connect to ethernet before run it!")
-        subprocess.call("iwctl", "device", "list")
-        return None
     use_citory_packages_or_not_lol_cool_func_name_bro()
     say_me_aur()
     build_aur_script(INSTALL_AUR, INSTALL_AUR_PACKAGES)
