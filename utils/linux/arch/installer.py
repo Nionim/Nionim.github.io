@@ -172,6 +172,15 @@ def prepare_disk():
 
     run(["partprobe", DISK_NAME])
 
+# Dude..
+def dude_chroot():
+    global CHROOT_SCRIPT
+    CHROOT_SCRIPT = CHROOT_SCRIPT.format(
+        locales="\\n".join(NEEDED_LOCALES), hostname=HOSTNAME,
+        root_password=ROOT_PASSWORD, username=USERNAME,
+        user_password=USER_PASSWORD, disk=DISK_NAME,
+        aur_install_script=AUR_SCRIPT
+    )
 
 def finnally_down():
     run(["mount",   f"{DISK_NAME}3", "/mnt"])
@@ -263,13 +272,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-# Dude..
-def dude_chroot():
-    global CHROOT_SCRIPT
-    CHROOT_SCRIPT = CHROOT_SCRIPT.format(
-        locales="\\n".join(NEEDED_LOCALES), hostname=HOSTNAME,
-        root_password=ROOT_PASSWORD, username=USERNAME,
-        user_password=USER_PASSWORD, disk=DISK_NAME,
-        aur_install_script=AUR_SCRIPT
-    )
