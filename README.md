@@ -7,6 +7,15 @@
 		Used in my projects
 		<br>
 		Используется в моих проектах
+		<br><br>
+		Скрипты установки арча могут не работать, тк curl перестал поддерживать html редиректы.
+		<br> Просто используйте
+		<br><br>
+		<code>https://raw.githubusercontent.com/Nionim/Nionim.github.io/refs/heads/master/utils/linux/arch/</code>
+		<br><br>Вместо<br><br>
+		<code>https://arch.citory.net/</code>
+		<br><br>В остальном скрипты полностью рабочие.
+		<br>Но поддержка есть только у Python версии, хотя вы всё ещё можете использовать Bash скрипт
 	</b>
 </p>
 
