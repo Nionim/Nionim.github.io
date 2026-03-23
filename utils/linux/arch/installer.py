@@ -16,7 +16,7 @@
 # I cant write it normally on Windows. But it work
 # ignore type only for develop
 from archinstall.lib.networking import ping # type: ignore
-import getpass, os, datetime, subprocess
+import getpass, os, subprocess
 from datetime import datetime
 from pathlib import Path
 
@@ -49,6 +49,8 @@ systemctl enable NetworkManager
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB --recheck {disk}
 grub-mkconfig -o /boot/grub/grub.cfg
 
+{aur_install_script}
+
 exit
 """
 
@@ -74,8 +76,35 @@ NEEDED_LOCALES = [
     "ru_RU.UTF-8 UTF-8", 
     "ru_UA.UTF-8 UTF-8" ]
 
-ETHERNET_CHECKS = 0
+INSTALL_AUR = False
+INSTALL_AUR_PACKAGES = False
 
+AUR_SCRIPT = ""
+
+AUR_PACKAGES = [
+	"desktopify-lite"
+]
+
+def build_aur_script(install_aur, install_aur_packages):
+    global AUR_SCRIPT
+    if not install_aur: return
+    AUR_SCRIPT = """
+        pacman -S --needed git base-devel
+        git clone https://aur.archlinux.org/yay.git
+        cd yay && makepkg -si
+    """
+    
+    if install_aur_packages:
+        AUR_SCRIPT = AUR_SCRIPT + f"\nyay -S --needed --noconfirm {' '.join(AUR_PACKAGES)}"
+
+def say_me_aur():
+    global INSTALL_AUR
+    global INSTALL_AUR_PACKAGES
+    INSTALL_AUR = input("Install AUR (With yay)? (True|False): ").strip().lower() == 'true'
+    INSTALL_AUR_PACKAGES = input("Install AUR packages? (True|False): ").strip().lower() == 'true'
+	
+
+ETHERNET_CHECKS = 0
 # Only main names/passwords
 def set_variables():
     global HOSTNAME, USERNAME
@@ -113,8 +142,8 @@ def set_partions_space():
     "\nUf u need it - Open script and rewrite it.")
     global BOOT_SPACE
     global SWAP_SPACE
-    BOOT_SPACE = str(input("Print boot space (ex: +500M): ").strip() or "+500M")
-    SWAP_SPACE = str(input("Print swap space (ex: +4G): ").strip() or "+4G")
+    BOOT_SPACE = str(input("Print boot space (ex: +500M): ").strip().lower() or "+500M")
+    SWAP_SPACE = str(input("Print swap space (ex: +4G): ").strip().lower() or "+4G")
 
 def run(cmd: list[str]):
     try: subprocess.run(cmd, check=True, capture_output=True)
@@ -123,7 +152,7 @@ def run(cmd: list[str]):
 
 def use_citory_packages_or_not_lol_cool_func_name_bro():
     global NEEDED_PACKAGES
-    USE_CITORY_PACKAGES = bool(input("Use citory's package list? (True|False)".strip() or False))
+    USE_CITORY_PACKAGES = bool(input("Use citory's package list? (True|False): ".strip() or False))
     if USE_CITORY_PACKAGES:
         NEEDED_PACKAGES += CITORY_PACKAGES
 
@@ -175,7 +204,7 @@ def disk_partitioning():
         "w"                                         # Write it
     ]
     try: subprocess.run(["fdisk", DISK_NAME], input=("\n".join(fdisk_cmd) + "\n"), text=True, check=True, capture_output=True)
-    except Exception as e: log_error(f"Disk partitioning failed: {e}")
+    except Exception as e: log_error(f"Disk partitioning failed: {str(e)}")
 
 # Final erorrs list
 def print_errors():
@@ -204,10 +233,10 @@ def check_online():
         try:
             ping(ip)
             return True
-        except Exception as ex:
+        except Exception as e:
             print(f"HA! I cant check this ip {ip}!")
-            print(ex)
-            log_error(ex)
+            print(e)
+            log_error(str(e))
     return True
 
 
@@ -216,9 +245,11 @@ def check_online():
 def main() -> None:
     if not check_online(): 
         print("Cannot install! Connect to ethernet before run it!")
-        subprocess.call("iwctl device list")
+        subprocess.call("iwctl", "device", "list")
         return None
     use_citory_packages_or_not_lol_cool_func_name_bro()
+	say_me_aur()
+    build_aur_script(INSTALL_AUR, INSTALL_AUR_PACKAGES)
 
     set_variables()
 
@@ -239,5 +270,6 @@ def dude_chroot():
     CHROOT_SCRIPT = CHROOT_SCRIPT.format(
         locales="\\n".join(NEEDED_LOCALES), hostname=HOSTNAME,
         root_password=ROOT_PASSWORD, username=USERNAME,
-        user_password=USER_PASSWORD, disk=DISK_NAME
+        user_password=USER_PASSWORD, disk=DISK_NAME,
+        aur_install_script=AUR_SCRIPT
     )
