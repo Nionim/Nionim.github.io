@@ -175,7 +175,7 @@ def finnally_down():
     Path("/mnt/boot/efi").mkdir(parents=True, exist_ok=True)
     run(["mount", f"{DISK_NAME}1", "/mnt/boot/efi"])
     run(["swapon", f"{DISK_NAME}2"])
-
+    
     keys_refresh()
 	
     print("Packages installing..")
