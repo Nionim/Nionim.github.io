@@ -176,6 +176,8 @@ def finnally_down():
     run(["mount", f"{DISK_NAME}1", "/mnt/boot/efi"])
     run(["swapon", f"{DISK_NAME}2"])
 
+	keys_refresh()
+	
     print("Packages installing..")
     run(["pacstrap", "/mnt"] + NEEDED_PACKAGES)
 
@@ -213,6 +215,10 @@ def log_error(msg: str):
         current_time = datetime.now().strftime("%H:%M:%S")
         f.write(f"[{current_time}] {msg}\n")
         print(f"[{current_time}] {msg}")
+
+def keys_refresh():
+	run(["pacman", "-Sy", "--noconfirm", "archlinux-keyring"])
+	run(["pacman", "-Scc", "--noconfirm"])
 
 def main() -> None:
     use_citory_packages_or_not_lol_cool_func_name_bro()
