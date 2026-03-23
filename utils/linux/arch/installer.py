@@ -188,6 +188,7 @@ def finnally_down():
         log_error(f"genfstab failed:\n{result.stderr}")
 
     dude_chroot()
+    Path("/mnt/tmp").mkdir(parents=True, exist_ok=True)
     Path("/mnt/tmp/config.sh").write_text(CHROOT_SCRIPT)
     Path("/mnt/tmp/config.sh").chmod(0o755)
     run(["arch-chroot", "/mnt", "/tmp/config.sh"])
