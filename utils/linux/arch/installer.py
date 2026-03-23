@@ -66,7 +66,7 @@ NEEDED_PACKAGES = [
 
 # DeltaCion's setup
 CITORY_PACKAGES = [
-    "firefox", "stow", "fastfetch", "7zip" ]
+    "firefox", "stow", "fastfetch", "7zip", "otf-font-awesome" ]
 
 # Needed locales
 NEEDED_LOCALES = [
