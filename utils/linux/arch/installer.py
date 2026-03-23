@@ -118,7 +118,7 @@ def set_variables():
         set_this_fvking_variables("SET THE F### HOSTNAME!")
     if not USERNAME or len(USERNAME) <= 1:
         set_this_fvking_variables("SET THE F### USERNAME!")
-    if not ROOT_PASSWORD or len(ROOT_PASSWORD) <= 1:
+	if not ROOT_PASSWORD or len(ROOT_PASSWORD) <= 1:
         set_this_fvking_variables("SET THE F### ROOT_PASSWORD!")
     if not USER_PASSWORD or len(USER_PASSWORD) <= 1:
         set_this_fvking_variables("SET THE F### USER_PASSWORD!")
@@ -247,8 +247,9 @@ def main() -> None:
         print("Cannot install! Connect to ethernet before run it!")
         subprocess.call("iwctl", "device", "list")
         return None
+
     use_citory_packages_or_not_lol_cool_func_name_bro()
-	say_me_aur()
+    say_me_aur()
     build_aur_script(INSTALL_AUR, INSTALL_AUR_PACKAGES)
 
     set_variables()
