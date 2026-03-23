@@ -205,15 +205,10 @@ def finnally_down():
 def disk_partitioning():
     print("Just do it!")
     print(f"Selectet disk: {DISK_NAME}")
-    fdisk_cmd = [
-        "g",                                        # GPT Table
-        "n", "1", "", BOOT_SPACE, "t", "1",         # Boot
-        "n", "2", "", SWAP_SPACE, "t", "2", "19",   # Swap
-        "n", "3", "", "",                           # Other
-        "w"                                         # Write it
-    ]
-    try: subprocess.run(["fdisk", DISK_NAME], input=("\n".join(fdisk_cmd) + "\n"), text=True, check=True, capture_output=True)
-    except Exception as e: log_error(f"Disk partitioning failed: {str(e)}")
+    run(["sgdisk", "-n", f"1:0:{BOOT_SPACE}", "-t", "1:EF00", DISK_NAME])
+    run(["sgdisk", "-n", f"2:0:{SWAP_SPACE}", "-t", "2:8200", DISK_NAME])
+    run(["sgdisk", "-n", "3:0:0", "-t", "3:8300", DISK_NAME])
+    run(["partprobe", DISK_NAME])
 
 # Final erorrs list
 def print_errors():
