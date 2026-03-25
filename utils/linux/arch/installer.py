@@ -55,7 +55,7 @@ NEEDED_PACKAGES = [
     "nano", "sudo",
     "networkmanager",
     "grub", "efibootmgr",
-    "os-prober"
+    "os-prober", "base-devel"
 ]
 
 # DeltaCion's setup
