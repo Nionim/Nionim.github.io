@@ -424,22 +424,32 @@ def finnally_down():
     run(["swapon", f"{DISK_NAME}2"])
 
     keys_refresh()
-	
     print("Packages installing..")
     run(["pacstrap", "/mnt"] + NEEDED_PACKAGES)
 
     result = subprocess.run(["genfstab", "-U", "/mnt"], capture_output=True, text=True)
-    if result.returncode == 0:
-        Path("/mnt/etc/fstab").write_text(result.stdout)
-    else:
-        log_error(f"genfstab failed:\n{result.stderr}")
+    if result.returncode == 0: Path("/mnt/etc/fstab").write_text(result.stdout)
+    else: log_error(f"genfstab failed:\n{result.stderr}")
 
     dude_chroot()
-    Path("/mnt/tmp").mkdir(parents=True, exist_ok=True)
-    Path("/mnt/tmp/config.sh").write_text(CHROOT_SCRIPT.replace("\r", ""))
-    Path("/mnt/tmp/config.sh").chmod(0o755)
-    run(["arch-chroot", "/mnt", "/tmp/config.sh"])
 
+    Path("/mnt/tmp").mkdir(parents=True, exist_ok=True)
+    config_path = Path("/mnt/tmp/config.sh")
+    config_path.write_text(CHROOT_SCRIPT.replace("\r", ""))
+    config_path.chmod(0o755)
+	
+    run(["mount", "-t", "proc", "proc", "/mnt/proc"])
+    run(["mount", "--rbind", "/sys", "/mnt/sys"])
+    run(["mount", "--rbind", "/dev", "/mnt/dev"])
+    run(["mount", "--rbind", "/run", "/mnt/run"])
+
+    run(["mount", "--make-rslave", "/mnt/sys"])
+    run(["mount", "--make-rslave", "/mnt/dev"])
+    run(["mount", "--make-rslave", "/mnt/run"])
+
+    result = subprocess.run(["arch-chroot", "/mnt", "/tmp/config.sh"])
+    if result.returncode != 0:
+        log_error(f"arch-chroot failed with code {result.returncode}")
     run(["umount", "-R", "/mnt"])
 
 def disk_partitioning():
