@@ -135,15 +135,12 @@ def set_partions_space():
     SWAP_SPACE = input("Print swap space (ex: +4G): ").strip() or "+4G"
 
 def run(cmd: list[str]):
-	if LIVE_LOGS:
-		command = " ".join(cmd)
-		print(f"Run: {command}")
-    try:
-        subprocess.run(cmd, check=True, capture_output=True, text=True)
-    except subprocess.CalledProcessError as e:
-        log_error(f"Command failed: {' '.join(cmd)}\n{e.stderr}")
-    except Exception as e:
-        log_error(f"Unexpected error running {' '.join(cmd)}: {str(e)}")
+    if LIVE_LOGS:
+        command = " ".join(cmd)
+        print(f"Run: {command}")
+    try: subprocess.run(cmd, check=True, capture_output=True, text=True)
+    except subprocess.CalledProcessError as e: log_error(f"Command failed: {' '.join(cmd)}\n{e.stderr}")
+    except Exception as e: log_error(f"Unexpected error running {' '.join(cmd)}: {str(e)}")
 
 def use_citory_packages_or_not_lol_cool_func_name_bro():
     global NEEDED_PACKAGES
@@ -209,7 +206,7 @@ def finnally_down():
     result = subprocess.run(["arch-chroot", "/mnt", "/tmp/config.sh"])
     if result.returncode != 0: log_error(f"arch-chroot failed with code {result.returncode}")
     run(["umount", "-R", "/mnt"])
-
+	
 def disk_partitioning():
     print("Just do it!")
     print(f"Selected disk: {DISK_NAME}")
