@@ -83,8 +83,9 @@ def build_aur_script(install_aur, install_aur_packages):
         return
     AUR_SCRIPT = """
         pacman -S --needed --noconfirm git base-devel
-        git clone https://aur.archlinux.org/yay.git
-        cd yay && makepkg -si --noconfirm
+        su nobody -s /bin/bash -c '
+            cd /tmp && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm
+        '
     """
     if install_aur_packages:
         AUR_SCRIPT += f"\nyay -S --needed --noconfirm {' '.join(AUR_PACKAGES)}"
