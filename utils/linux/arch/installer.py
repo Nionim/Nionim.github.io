@@ -183,7 +183,7 @@ def finnally_down():
     run(["swapon", f"{DISK_NAME}2"])
 
     keys_refresh()
-    run(["pacstrap", "/mnt"] + NEEDED_PACKAGES)
+    run(["pacstrap", "/mnt", "--needed"] + NEEDED_PACKAGES)
 
     result = subprocess.run(["genfstab", "-U", "/mnt"], capture_output=True, text=True)
     if result.returncode == 0: Path("/mnt/etc/fstab").write_text(result.stdout)
@@ -196,11 +196,7 @@ def finnally_down():
     config_path.write_text(CHROOT_SCRIPT.replace("\r", ""))
     config_path.chmod(0o755)
 	
-	run(["mkdir", "-p", "/mnt/proc"])
-    run(["mkdir", "-p", "/mnt/sys"])
-    run(["mkdir", "-p", "/mnt/dev"])
-    run(["mkdir", "-p", "/mnt/run"])
-
+	run(["mkdir", "-p", "/mnt/proc", "/mnt/sys", "/mnt/dev", "/mnt/run"])
     run(["mount", "-t", "proc", "proc", "/mnt/proc"])
     run(["mount", "--rbind", "/sys", "/mnt/sys"])
     run(["mount", "--rbind", "/dev", "/mnt/dev"])
