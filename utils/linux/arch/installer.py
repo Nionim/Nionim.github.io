@@ -195,8 +195,8 @@ def finnally_down():
     config_path = Path("/mnt/tmp/config.sh")
     config_path.write_text(CHROOT_SCRIPT.replace("\r", ""))
     config_path.chmod(0o755)
-	
-	run(["mkdir", "-p", "/mnt/proc", "/mnt/sys", "/mnt/dev", "/mnt/run"])
+
+    run(["mkdir", "-p", "/mnt/proc", "/mnt/sys", "/mnt/dev", "/mnt/run"])
     run(["mount", "-t", "proc", "proc", "/mnt/proc"])
     run(["mount", "--rbind", "/sys", "/mnt/sys"])
     run(["mount", "--rbind", "/dev", "/mnt/dev"])
@@ -209,7 +209,7 @@ def finnally_down():
     result = subprocess.run(["arch-chroot", "/mnt", "/tmp/config.sh"])
     if result.returncode != 0: log_error(f"arch-chroot failed with code {result.returncode}")
     run(["umount", "-R", "/mnt"])
-	
+
 def disk_partitioning():
     print("Just do it!")
     print(f"Selected disk: {DISK_NAME}")
