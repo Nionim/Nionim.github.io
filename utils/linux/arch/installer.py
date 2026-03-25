@@ -77,27 +77,6 @@ AUR_PACKAGES = [
     "desktopify-lite"
 ]
 
-def build_aur_script(install_aur, install_aur_packages):
-    global AUR_SCRIPT
-    if not install_aur:
-        return
-    AUR_SCRIPT = f"""
-        pacman -S --needed --noconfirm git base-devel
-        su {USERNAME} -s /bin/bash -c '
-            cd /tmp && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm
-        '
-    """
-    if install_aur_packages:
-        AUR_SCRIPT += f"\nyay -S --needed --noconfirm {' '.join(AUR_PACKAGES)}"
-
-def say_me_aur():
-    global INSTALL_AUR
-    global INSTALL_AUR_PACKAGES
-    inp = input("Install AUR (With yay)? (True|False): ").strip().lower()
-    INSTALL_AUR = inp in ('true', 't', 'yes', 'y', '1')
-    inp = input("Install AUR packages? (True|False): ").strip().lower()
-    INSTALL_AUR_PACKAGES = inp in ('true', 't', 'yes', 'y', '1')
-
 def set_variables():
     global HOSTNAME, USERNAME, ROOT_PASSWORD, USER_PASSWORD
 
@@ -118,6 +97,27 @@ def set_variables():
     if not USER_PASSWORD:
         print("SET THE F### USER_PASSWORD!")
         set_variables(); return
+
+def build_aur_script(install_aur, install_aur_packages):
+    global AUR_SCRIPT
+    if not install_aur:
+        return
+    AUR_SCRIPT = f"""
+        pacman -S --needed --noconfirm git base-devel
+        su {USERNAME} -s /bin/bash -c '
+            cd /tmp && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm
+        '
+    """
+    if install_aur_packages:
+        AUR_SCRIPT += f"\nyay -S --needed --noconfirm {' '.join(AUR_PACKAGES)}"
+
+def say_me_aur():
+    global INSTALL_AUR
+    global INSTALL_AUR_PACKAGES
+    inp = input("Install AUR (With yay)? (True|False): ").strip().lower()
+    INSTALL_AUR = inp in ('true', 't', 'yes', 'y', '1')
+    inp = input("Install AUR packages? (True|False): ").strip().lower()
+    INSTALL_AUR_PACKAGES = inp in ('true', 't', 'yes', 'y', '1')
 
 def set_disk_name():
     global DISK_NAME
