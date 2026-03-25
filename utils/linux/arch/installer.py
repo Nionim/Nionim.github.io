@@ -223,10 +223,10 @@ def print_errors():
 
 def log_error(msg: str):
     os.makedirs(os.path.dirname(ERRORS), exist_ok=True)
+    current_time = datetime.now().strftime("%H:%M:%S")
+    print(f"[{current_time}] {msg}")
     with open(ERRORS, "a", encoding="utf-8") as f:
-        current_time = datetime.now().strftime("%H:%M:%S")
         f.write(f"[{current_time}] {msg}\n")
-        print(f"[{current_time}] {msg}")
 
 def keys_refresh():
     run(["pacman", "-Sy", "--noconfirm", "archlinux-keyring"])
