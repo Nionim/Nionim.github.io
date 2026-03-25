@@ -187,26 +187,12 @@ def finnally_down():
     else: log_error(f"genfstab failed:\n{result.stderr}")
 
     dude_chroot()
+    chroot_cmd = ["arch-chroot", "/mnt", "/bin/bash", "-c", CHROOT_SCRIPT]
 
-    Path("/mnt/tmp").mkdir(parents=True, exist_ok=True)
-    config_path = Path("/mnt/tmp/config.sh")
-    config_path.write_text(CHROOT_SCRIPT.replace("\r", ""))
-    config_path.chmod(0o755)
-
-    run(["mkdir", "-p", "/mnt/proc", "/mnt/sys", "/mnt/dev", "/mnt/run"])
-    run(["mount", "-t", "proc", "proc", "/mnt/proc"])
-    run(["mount", "--rbind", "/sys", "/mnt/sys"])
-    run(["mount", "--rbind", "/dev", "/mnt/dev"])
-    run(["mount", "--rbind", "/run", "/mnt/run"])
-
-    run(["mount", "--make-rslave", "/mnt/sys"])
-    run(["mount", "--make-rslave", "/mnt/dev"])
-    run(["mount", "--make-rslave", "/mnt/run"])
-
-    result = subprocess.run(["arch-chroot", "/mnt", "/tmp/config.sh"])
+    result = subprocess.run(chroot_cmd, capture_output=False)
     if result.returncode != 0: log_error(f"arch-chroot failed with code {result.returncode}")
     run(["umount", "-R", "/mnt"])
-	
+
 def disk_partitioning():
     print("Just do it!")
     print(f"Selected disk: {DISK_NAME}")
