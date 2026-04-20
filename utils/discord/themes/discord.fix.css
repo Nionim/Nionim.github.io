@@ -20,6 +20,9 @@
 	.footer__214dc {
 		display: none
 	}
+	/* Hide blocked messages */
+	/* div[class*='blockedSystemMessage']{display:none;} */
+	/* div[class^='groupStart_'] { display: none; } */
 	/* Hide shop and "Nitro"*/
 	a[data-list-item-id*="shop"], a[data-list-item-id*="nitro"] {
 		display: none;
