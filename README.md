@@ -22,7 +22,7 @@
 <h3 align="center">-== [ Main arch skript ] ==-</h3>
 
 ```bash
-curl -L -O https://arch.citory.net/arch.html
+curl -L -O https://arch.citory.net/utils/linux/arch/installer.sh
 chmod +x installer.sh
 ./installer.sh
 ```
@@ -31,7 +31,7 @@ chmod +x installer.sh
 <h3 align="center">-== [ New arch skript ] ==-</h3>
 
 ```bash
-curl -L -O https://arch.citory.net/arch.py.html
+curl -L -O https://arch.citory.net/utils/linux/arch/installer.py
 chmod +x installer.py
 ./installer.py
 ```
