@@ -62,13 +62,13 @@ chmod +x installer.py
     </tr>
     <tr>
         <th>ArchDots
-        <th>---
+        <th>—
         <th><a target="_blank" href="https://github.com/Nionim/ArchDots">URL</a>
         <th align="left">My arch dots
     </tr>
     <tr>
         <th>WinDots
-        <th>---
+        <th>—
         <th><a target="_blank" href="https://github.com/Nionim/WinDots">URL</a>
         <th align="left">My windows dots
     </tr>
@@ -86,43 +86,43 @@ chmod +x installer.py
     </tr>
     <tr>
         <th>CitorySDK
-        <th>---
+        <th>—
         <th><a target="_blank" href="https://github.com/Delta-Factory/CitorySDK">URL</a>
         <th align="left">Development kit by me and for me</i>
     </tr>
     <tr>
         <th>RimworldModdingKit
-        <th>---
+        <th>—
         <th><a target="_blank" href="https://github.com/Delta-Factory/RimworldMK">URL</a>
         <th align="left">Rimworld modding kit for Rover</i>
     </tr>
     <tr>
         <th>Webhooks
-        <th>---
+        <th>—
         <th><a href="https://github.com/Nionim/Webhooks">URL</a>
         <th align="left">Util for send github webhooks to telegram & discord in discord format</i>
     </tr>
     <tr>
         <th>SelfHostSystem
-        <th>---
+        <th>—
         <th><a target="_blank" href="https://github.com/Nionim/SelfHostSystem">URL</a>
         <th align="left">Nah.. It`s.. Docker system for... Easy host on.. Read the README.md!</i>
     </tr>
     <tr>
         <th>Vize Launcher
-        <th>---
+        <th>—
         <th><a target="_blank" href="https://github.com/Nionim/VizeLauncher">URL</a>
         <th align="left">My minecraft launcher..</i>
     </tr>
     <tr>
         <th>MinecraftServerPingerLib
-        <th>---
+        <th>—
         <th><a target="_blank" href="https://github.com/Delta-Factory/MinecraftServerPingerLib">URL</a>
         <th align="left">Node scanner library for java MC servers (:D)</i>
     </tr>
     <tr>
         <th>DiscordNuker
-        <th>---
+        <th>—
         <th><a target="_blank" href="https://github.com/Delta-Factory/DiscordNuker">URL</a>
         <th align="left">Discord nuker. LOL</i>
     </tr>
@@ -134,7 +134,7 @@ chmod +x installer.py
     </tr>
     <tr>
         <th>WTL
-		<th>---
+		<th>—
 		<th><a target="_blank" href="https://github.com/Nionim/WTL">URL</a>
         <th align="left">WTL</i>
     </tr>
