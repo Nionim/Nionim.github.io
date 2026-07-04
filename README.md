@@ -145,7 +145,7 @@ chmod +x installer.py
 
 <p align="center">
 	<a target="_blank" href="https://t.me/LOWcitory" target="_blank">
-		<img alt="Cute text for this page", src="https://readme-typing-svg.demolab.com?font=Comic+Sans+MS&size=31&pause=125&color=8518F7&center=true&vCenter=true&width=435&separator=%3C&lines=%3E+%24+DeltaCion%3C%3E+I+love+GMA%3C%3E+Lmao%3C%3E+Just+use+it+if+u+need%3C%3E+Bruh...%3C%3E+Try+not+die%3C;%3C...+so+sad..">
+		<img alt="Cute text for this page" src="https://readme-typing-svg.demolab.com?font=Comic+Sans+MS&size=31&pause=125&color=8518F7&center=true&vCenter=true&width=435&separator=%3C&lines=%3E+%24+DeltaCion%3C%3E+I+love+GMA%3C%3E+Lmao%3C%3E+Just+use+it+if+u+need%3C%3E+Bruh...%3C%3E+Try+not+die%3C;%3C...+so+sad..">
 	</a>
 </p>
 
