@@ -143,6 +143,16 @@ chmod +x installer.py
 
 ---
 
+
+<p align="center">
+    <a href="#">
+        <img src="https://img.shields.io/github/last-commit/Nionim/Nionim.github.io?display_timestamp=committer&style=flat-square&color=000000"></a>
+    <a href="#">
+        <img src="https://img.shields.io/github/created-at/Nionim/Nionim.github.io?style=flat-square&color=000000"></a>
+</p>
+
+---
+
 <br>
 <p align="center">
 	<a target="_blank" href="https://t.me/LOWcitory" target="_blank">
