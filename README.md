@@ -87,13 +87,13 @@ chmod +x installer.py
     <tr>
         <th>CitorySDK</th>
         <th>—</th>
-        <th><a target="_blank" href="https://github.com/vaYO-GG/CitorySDK">URL</a></th>
+        <th><a target="_blank" href="https://github.com/Nionim/CitorySDK">URL</a></th>
         <th align="left">Development kit by me and for me</i></th>
     </tr>
     <tr>
         <th>RimworldModdingKit</th>
         <th>—</th>
-        <th><a target="_blank" href="https://github.com/vaYO-GG/RimworldMK">URL</a></th>
+        <th><a target="_blank" href="https://github.com/Nionim/RimworldMK">URL</a></th>
         <th align="left">Rimworld modding kit for Rover</i></th>
     </tr>
     <tr>
@@ -117,14 +117,14 @@ chmod +x installer.py
     <tr>
         <th>MinecraftServerPingerLib</th>
         <th>—</th>
-        <th><a target="_blank" href="https://github.com/vaYO-GG/MinecraftServerPingerLib">URL</a></th>
+        <th><a target="_blank" href="https://github.com/Nionim/MinecraftServerPingerLib">URL</a></th>
         <th align="left">Node scanner library for java MC servers (:D)</i></th>
     </tr>
     <tr>
-        <th>DiscordNuker</th>
+        <th>DiscordBot</th>
         <th>—</th>
-        <th><a target="_blank" href="https://github.com/vaYO-GG/DiscordNuker">URL</a></th>
-        <th align="left">Discord nuker. LOL</i></th>
+        <th><a target="_blank" href="https://github.com/Nionim/DiscordBot">URL</a></th>
+        <th align="left">Временно приватный</th>
     </tr>
     <tr>
         <th>MC Versions</th>
