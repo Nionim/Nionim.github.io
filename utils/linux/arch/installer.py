@@ -223,8 +223,8 @@ def keys_refresh():
 def main() -> None:
     use_citory_packages_or_not_lol_cool_func_name_bro()
     say_me_aur()
-    build_aur_script(INSTALL_AUR, INSTALL_AUR_PACKAGES)
     set_variables()
+    build_aur_script(INSTALL_AUR, INSTALL_AUR_PACKAGES)
     set_disk_name()
     set_partions_space()
     prepare_disk()
