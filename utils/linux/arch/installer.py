@@ -211,13 +211,12 @@ def print_errors():
             print(''.join(lines))
 
 def mirrors():
-    cmd = [
+    run([
         "curl", "-o", "/etc/pacman.d/mirrorlist.new",
         "https://archlinux.org/mirrorlist/?country=RU&country=DE&country=KZ&protocol=https&ip_version=4"
-    ]
-    subprocess.run(cmd, check=False)
-    subprocess.run(["sed", "-i", "s/^#Server/Server/", "/etc/pacman.d/mirrorlist.new"], check=False)
-    subprocess.run(["mv", "/etc/pacman.d/mirrorlist.new", "/etc/pacman.d/mirrorlist"], check=False)
+    ])
+    run(["sed", "-i", "s/^#Server/Server/", "/etc/pacman.d/mirrorlist.new"])
+    run(["mv", "/etc/pacman.d/mirrorlist.new", "/etc/pacman.d/mirrorlist"])
     run(["pacman", "-Sy"])
 
 def log_error(msg: str):
