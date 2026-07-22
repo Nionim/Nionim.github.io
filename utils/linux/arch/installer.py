@@ -236,7 +236,7 @@ def main() -> None:
     say_me_aur()
     set_variables()
     build_aur_script(INSTALL_AUR, INSTALL_AUR_PACKAGES)
-	mirrors()
+    mirrors()
     set_disk_name()
     set_partions_space()
     prepare_disk()
