@@ -1,0 +1,16 @@
+root {
+  /* Main BG */
+  --bgColor-default: #111      !important;
+  
+  /* Main text */
+  --fgColor-default: #f0f6fc   !important;
+
+  /* Main borders. README etc */
+  --borderColor-default: #3d444d;
+
+  /* TopBar text */
+  --fgColor-default: #f0f6fc;
+  
+  /* TopBar BG color */
+  --bgColor-inset: #1e1e1e;
+}
